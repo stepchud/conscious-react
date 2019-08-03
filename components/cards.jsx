@@ -1,6 +1,6 @@
 import React from 'react'
 import { map } from 'lodash'
-import { lawAtIndex } from 'reducers/laws'
+import { lawAtIndex } from '../reducers/laws'
 
 export const Card = ({
   card,

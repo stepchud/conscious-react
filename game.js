@@ -1,9 +1,9 @@
 import { combineReducers, createStore} from 'redux'
 
-import { sixSides } from 'constants'
+import { sixSides } from './constants'
 // reducers
-import board from 'reducers/board'
-import cards, { sameSuit, makeFaceCard } from 'reducers/cards'
+import board from './reducers/board'
+import cards, { sameSuit, makeFaceCard } from './reducers/cards'
 import laws, {
   hasnamuss,
   jackDiamonds,
@@ -12,9 +12,9 @@ import laws, {
   queenHearts,
   tenSpades,
   cantChooseLaw,
-} from 'reducers/laws'
-import fd, { entering, deathEvent, allNotes } from 'reducers/food_diagram'
-import ep, { rollOptions } from 'reducers/being'
+} from './reducers/laws'
+import fd, { entering, deathEvent, allNotes } from './reducers/food_diagram'
+import ep, { rollOptions } from './reducers/being'
 
 const startCausalDeath = () => {
   const roll1 = sixSides.roll()

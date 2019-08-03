@@ -1,15 +1,15 @@
 import React from 'react'
 import { map } from 'lodash'
 
-import { combinable, playable, selectedCards } from 'reducers/cards'
+import { combinable, playable, selectedCards } from '../reducers/cards'
 import {
   jackDiamonds,
   jackHearts,
   selectedLaws,
   selectedPlayedLaws,
   unobeyedLaws,
-} from 'reducers/laws'
-import { selectedParts } from 'reducers/being'
+} from '../reducers/laws'
+import { selectedParts } from '../reducers/being'
 import { TURNS } from '../constants'
 
 const Buttons = ({

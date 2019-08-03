@@ -1,5 +1,5 @@
 import { map, filter } from 'lodash'
-import { sameSuit, makeNewPart, combinable } from 'reducers/cards'
+import { sameSuit, makeNewPart, combinable } from './cards'
 import { LOB, PARTS, sixSides } from '../constants'
 
 const InitialState = {

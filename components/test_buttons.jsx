@@ -1,9 +1,9 @@
 import React from 'react'
 import { map, some } from 'lodash'
 
-import { combinable, playable, selectedCards } from 'reducers/cards'
-import { selectedLaws } from 'reducers/laws'
-import { selectedParts } from 'reducers/being'
+import { combinable, playable, selectedCards } from '../reducers/cards'
+import { selectedLaws } from '../reducers/laws'
+import { selectedParts } from '../reducers/being'
 
 const TestButtons = ({
   actions,

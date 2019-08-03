@@ -14,7 +14,7 @@ import {
 import {
   selectedCards,
   sameSuit,
-} from 'reducers/cards'
+} from './cards'
 
 import {
   LAW_DECK,

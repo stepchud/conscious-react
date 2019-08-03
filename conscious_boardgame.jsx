@@ -2,15 +2,15 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { filter, map, includes } from 'lodash'
 
-import Buttons from 'components/buttons'
-import TestButtons from 'components/test_buttons'
-import Board   from 'components/board'
-import { CardHand, LawHand } from 'components/cards'
-import FoodDiagram, { processExtra } from 'components/food'
-import ThreeBrains from 'components/being'
+import Buttons from './components/buttons'
+import TestButtons from './components/test_buttons'
+import Board   from './components/board'
+import { CardHand, LawHand } from './components/cards'
+import FoodDiagram, { processExtra } from './components/food'
+import ThreeBrains from './components/being'
 
 import { TURNS } from './constants'
-import store, { actions } from 'game'
+import store, { actions } from './game'
 
 const ConsciousBoardgame = () => {
   const { board, cards, laws, fd, ep } = store.getState()

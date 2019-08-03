@@ -1,8 +1,8 @@
 import React from 'react'
 import { pad, repeat, findIndex } from 'lodash'
 
-import { spaces, s2, s3, clickOrReturn } from 'components/utils'
-import { Card } from 'components/cards'
+import { spaces, s2, s3, clickOrReturn } from './utils'
+import { Card } from './cards'
 
 const ThreeBrains = ({
   parts,
