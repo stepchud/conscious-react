@@ -2,14 +2,16 @@ import React from 'react'
 import { map } from 'lodash'
 import { lawAtIndex } from '../reducers/laws'
 
+const imgTag = (card) => <img className='card-img' src={`images/${card}.gif`} alt={card} />
+
 export const Card = ({
   card,
   onClick,
 }) => {
   const classes = `card ${card.selected ? 'selected' : ''}`
-  return <span className={classes} onClick={onClick} onKeyDown={onClick} tabIndex='0'>
-    {card.c}
-  </span>
+  return <div className={classes} onClick={onClick} onKeyDown={onClick} tabIndex='0'>
+    {imgTag(card.c)}
+  </div>
 }
 
 const ActiveLawCard = ({
@@ -17,10 +19,12 @@ const ActiveLawCard = ({
   covered,
 }) => {
   return (
-    <span title={card.text} className='card law'>
-      {card.card}
-      {!!covered.length && `(${covered.join(',')})`}
-    </span>
+    <div title={card.text} className='card law'>
+      <span className="card-state">
+        {!!covered.length && `(${covered.join(',')})`}
+      </span>
+      {imgTag(card.card)}
+    </div>
   )
 }
 
@@ -29,14 +33,16 @@ const LawCard = ({
   onClick
 }) => {
   const classes = `card law ${card.selected ? 'selected' : ''}`
+  const cardState = []
+  if (card.obeyed) { cardState.push('O') }
+  if (card.played) { cardState.push('P') }
   return (
-    <span title={card.c.text} className={classes} onClick={onClick} tabIndex='0'>
-      {card.c.card}
-      <sup>
-        {card.obeyed ? 'o' : '\u00A0'}
-        {card.played ? 'p' : '\u00A0'}
-      </sup>
-    </span>
+    <div title={card.c.text} className={classes} onClick={onClick} tabIndex='0'>
+      <span className="card-state">
+        {cardState.join(',')}
+      </span>
+      {imgTag(card.c.card)}
+    </div>
   )
 }
 
@@ -47,10 +53,11 @@ export const CardHand = ({
   const hand = cards.length ? (
     map(cards, (c, i) => <Card key={i} card={c} onClick={() => onSelect(i)} tabIndex='0' />)
   ) : (
-    <span>Empty Card Hand</span>
+    <span>No Cards.</span>
     )
   return (
-    <div className="cards">
+    <div className="section cards">
+      <h3>Card Hand</h3>
       {hand}
     </div>
   )
@@ -62,42 +69,31 @@ export const LawHand = ({
   onSelect,
   onChoice,
 }) => {
-  let activeLaws
-  if (laws.active.length) {
-    const lawCards = map(
-      laws.active,
-      (c, i) => <ActiveLawCard key={i} card={lawAtIndex(c)} covered={c.protected} />
-    )
-    activeLaws = (
-      <div className="active laws">
-        <strong>Active Laws: { lawCards }</strong>
-      </div>
-    )
-  }
-
-  const hand = laws.hand.length ? (
+  const inHand = laws.hand.length ? (
     map(laws.hand, (c, i) =>
       <LawCard key={i} card={c} onClick={() => byChoice && onChoice(i)} />
     )
   ) : (
-    <span>Empty Law Hand</span>
+    <span>Empty Law Hand.</span>
   )
 
   return (
-    <div className="cards laws">
-      <div className="active laws">
-        {activeLaws}
-      </div>
-      <div className="lawhand">
-        <span>Law hand:</span>
-        {hand}
-      </div>
-      <div className="inplay laws">
-        {!!laws.in_play.length && <span>In play:</span>}
-        {!!laws.in_play.length && map(laws.in_play, (c, i) =>
+    <div className="section cards laws">
+      <h3>Laws</h3>
+      <span className="laws">In Hand:</span>
+      {inHand}
+      { !!laws.in_play.length && <span className="laws">In Play:</span> }
+      { !!laws.in_play.length &&
+        map(laws.in_play, (c, i) =>
           <LawCard key={i} card={c} onClick={() => onSelect(i)} tabIndex='0' />
-        )}
-      </div>
+        )
+      }
+      { !!laws.active.length && <span className="laws">Active:</span> }
+      { !!laws.active.length &&
+        map(laws.active, (c, i) =>
+          <ActiveLawCard key={i} card={lawAtIndex(c)} covered={c.protected} />
+        )
+      }
     </div>
   )
 }

@@ -1,16 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-const spaceMap = {
-  '*': 'Wild',
-  'F': 'Food',
-  'A': 'Air',
-  'I': 'Impression',
-  'C': 'Card',
-  'L': 'Law',
-  'D': 'Decay',
+const classMap = {
+  '*': 'wild',
+  'F': 'food',
+  'A': 'air',
+  'I': 'impression',
+  'C': 'card',
+  'L': 'law',
+  'D': 'decay',
 }
-const name = (letter) => spaceMap[letter]
+const spaceElem = (space, index, position) =>
+  (<span key={index} className={`${classMap[space]} ${index==position ? 'player' : ''}`}></span>)
+
 const split = (spaces, position) => ({
   before: spaces.slice(0, position),
   at: spaces.slice(position, position+1),
@@ -21,12 +23,11 @@ const board = ({
   spaces,
   position,
 }) => {
-  const { before, at, after } = split(spaces, position)
+  const spacesMapped = spaces.split('').map((letter, index) => spaceElem(letter, index, position))
   return (
-    <div className="board-spaces">
-      {before}
-      <span style={{textDecoration: 'underline'}}>{at}</span>
-      {after}
+    <div className="section board">
+      <h3>Game Board</h3>
+      {spacesMapped}
     </div>
   )
 }

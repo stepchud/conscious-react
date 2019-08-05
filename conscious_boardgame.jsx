@@ -8,7 +8,7 @@ import TestButtons from './components/test_buttons'
 import Board   from './components/board'
 import { CardHand, LawHand } from './components/cards'
 import FoodDiagram, { processExtra } from './components/food'
-import ThreeBrains from './components/being'
+import { PlayerStats, ThreeBrains } from './components/being'
 
 import { TURNS } from './constants'
 import store, { actions } from './game'
@@ -18,6 +18,7 @@ const ConsciousBoardgame = () => {
 
   return (
     <div>
+      <PlayerStats {...ep} />
       <Buttons
         actions={actions}
         roll={board.roll}

@@ -68,8 +68,8 @@ const Buttons = ({
   }
 
   return (
-    <div className="actions">
-      <span className="dice">{roll}</span>
+    <div className="section actions">
+      <div className="dice">{roll}</div>
       {buttons}
     </div>
   )

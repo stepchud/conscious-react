@@ -4,14 +4,24 @@ import { pad, repeat, findIndex } from 'lodash'
 import { spaces, s2, s3, clickOrReturn } from './utils'
 import { Card } from './cards'
 
-const ThreeBrains = ({
-  parts,
-  pieces,
+const PlayerStats = ({
   level_of_being,
   card_plays,
   transforms,
   wild_shock,
   all_shocks,
+}) =>
+  <div className="lob">
+    Level: {level_of_being},
+    Card plays: {card_plays},
+    Transform: {transforms},
+    Wild: {wild_shock},
+    All: {all_shocks}
+  </div>
+
+const ThreeBrains = ({
+  parts,
+  pieces,
   onSelect,
 }) => {
   const createCard = (c, i) => {
@@ -22,13 +32,6 @@ const ThreeBrains = ({
   const mapPiece = (n) => `[${pad(repeat('*', n), 2)}]`
   return (
     <div>
-      <div className="lob">
-        Level: {level_of_being},
-        Card plays: {card_plays},
-        Transform: {transforms},
-        Wild: {wild_shock},
-        All: {all_shocks}
-      </div>
       <div className="cards being">
         <pre>
           <h3>
@@ -54,4 +57,7 @@ const ThreeBrains = ({
     </div>
   )
 }
-export default ThreeBrains
+export {
+  PlayerStats,
+  ThreeBrains
+}
