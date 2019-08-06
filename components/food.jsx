@@ -9,8 +9,8 @@ const Note = ({
   astral=false,
   mental=false,
 }) => (
-  <div className={mental ? 'mental' : undefined}>
-    <div className={astral ? 'astral' : undefined}>
+  <div className={`mental ${mental ? 'piece' : ''}`}>
+    <div className={`astral ${astral ? 'piece' : ''}`}>
       <div className={`note ${type}`}>
         { times(chips, (i) => <span key={i} className="chip"></span>) }
       </div>
@@ -34,17 +34,39 @@ const FoodDiagram = ({
   }
   return (
     <div className="section fd">
+      <h3>Food</h3>
       {bodyType}
       { current.food.slice(0,-1).map((note, i) =>
-        <Note key={i} type="food" chips={note} astral={true} mental={true} />) }
+          <Note key={i}
+            type="food"
+            chips={note}
+            astral={current.astral && (foodChips > i)}
+            mental={current.mental && (foodChips > 8 + i)} />
+      ) }
+      { !current.astral && (foodChips > 0) && times(foodChips, (i) =>
+        <Note key={i} type="spacer" astral={true} />
+      ) }
+      { !current.mental && (foodChips > 8) && times((foodChips - 8), (i) =>
+        <Note key={i} type="spacer" mental={true} />
+      ) }
       <br />
       { times(2, (i) => <Note key={i} type="spacer" />) }
       { current.air.slice(0,-1).map((note, i) =>
-        <Note key={i} type="air" chips={note} astral={true} mental={true} />) }
+          <Note key={i}
+            type="air"
+            chips={note}
+            astral={current.astral && (airChips > i)}
+            mental={current.mental && (airChips > 6 + i)} />
+      ) }
       <br />
       { times(4, (i) => <Note key={i} type="spacer" />) }
       { current.impressions.slice(0,-1).map((note, i) =>
-        <Note key={i} type="impression" chips={note} astral={true} mental={true} />) }
+          <Note key={i}
+            type="impression"
+            chips={note}
+            astral={current.astral && (impChips > i)}
+            mental={current.mental && (impChips > 4 + i)} />
+      ) }
     </div>
   )
 }

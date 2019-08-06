@@ -2,7 +2,9 @@ import React from 'react'
 import { map } from 'lodash'
 import { lawAtIndex } from '../reducers/laws'
 
-const imgTag = (card) => <img className='card-img' src={`images/${card}.gif`} alt={card} />
+const imgTag = (card) => card=='JO' || card=='XJ'
+  ? <img className='card-img' src={`images/${card}.png`} alt={card} />
+  : <img className='card-img' src={`images/${card}.gif`} alt={card} />
 
 export const Card = ({
   card,
@@ -57,7 +59,7 @@ export const CardHand = ({
     )
   return (
     <div className="section cards">
-      <h3>Card Hand</h3>
+      <h3>Cards</h3>
       {hand}
     </div>
   )
@@ -80,7 +82,6 @@ export const LawHand = ({
   return (
     <div className="section cards laws">
       <h3>Laws</h3>
-      <span className="laws">In Hand:</span>
       {inHand}
       { !!laws.in_play.length && <span className="laws">In Play:</span> }
       { !!laws.in_play.length &&

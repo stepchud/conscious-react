@@ -26,7 +26,7 @@ const board = ({
   const spacesMapped = spaces.split('').map((letter, index) => spaceElem(letter, index, position))
   return (
     <div className="section board">
-      <h3>Game Board</h3>
+      <h3>Board</h3>
       {spacesMapped}
     </div>
   )

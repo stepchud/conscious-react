@@ -35,6 +35,7 @@ const ConsciousBoardgame = () => {
         parts={ep.parts}
       />
       */}
+      <FoodDiagram {...fd} store={store} />
       <Board {...board} />
       <CardHand cards={cards.hand} onSelect={actions.onSelectCard} />
       { fd.current.alive && <LawHand
@@ -43,7 +44,6 @@ const ConsciousBoardgame = () => {
           onSelect={actions.onSelectLawCard}
           onChoice={actions.onChooseLaw} />
       }
-      <FoodDiagram {...fd} store={store} />
       <ThreeBrains {...ep} onSelect={actions.onSelectPart} />
     </div>
   )
