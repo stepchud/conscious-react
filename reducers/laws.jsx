@@ -98,9 +98,21 @@ const drawLawCard = (state) => {
   }
 }
 
+const testLawCard = (deck, law_text) => {
+  const textTest = new RegExp(`^${law_text}`)
+  const lawIndex = deck.findIndex((el) => el.text.match(textTest))
+  if (lawIndex >= 0) {
+    const tmpLaw = deck[lawIndex]
+    deck[lawIndex] = deck[0]
+    deck[0] = tmpLaw
+  }
+  return deck
+}
+
 const generateLawDeck = () => {
   const newDeck = shuffle(LAW_DECK.slice(0))
   return newDeck
+  //return testLawCard(newDeck, 'MAKE ONE THING')
 }
 
 const laws = (
